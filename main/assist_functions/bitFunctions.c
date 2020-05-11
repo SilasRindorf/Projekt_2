@@ -18,7 +18,8 @@ int doublePower(int powerTimes) {
     return number;
 }
 
-void calculateDirectoryInBits(char *bits, int startBit, int directory) {
+void calculateDirectoryInBits(char *bits, int startBit, char directory) {
+    directory -='0';
     int offset = 0;
     if (directory - offset - 4 >= 0) {
         bits[startBit] = '1';
@@ -59,7 +60,7 @@ int charToInt(char *chars, int pos) {
     while (1) {
         if (chars[counter] == '\0' || chars[counter] == '\n') {
             if (negativeNumber) {
-                number -= number * 2;
+                number *= -1;
                 return number;
             }
             return number;
@@ -90,7 +91,7 @@ void valueToCharArrayInBits(char *bits, int startBit, int bitsAvailable, int val
         number = doublePower(bitsAvailable - counter);
     }
     if (negativeNumber) {
-        for (int i = 0; i < bitsAvailable + 1; i++) {
+        for (int i = 0; i <= bitsAvailable; i++) {
             if (bits[startBit + i] == '1')
                 bits[startBit + i] = '0';
             else if (bits[startBit + i] == '0')

@@ -13,6 +13,11 @@ void valueToCharArrayInBits(char *bits, int startBit, int bitsAvailable, int val
 
 int charToInt(char *chars, int pos);
 
+//Verdens bedste debugger
+//printf("%s","value: ");
+//printf("%c",string[8]);
+//printf("%s","\n");
+
 char *machineCodeConverter(const char *string, int programCounter) {
     //Empty command
     char *bits = "0000000000000000\n\0";
@@ -23,10 +28,10 @@ char *machineCodeConverter(const char *string, int programCounter) {
     //ADD
     if (string[0] == 'A' && string[1] == 'D') {
         bits[3] = '1';
-        calculateDirectoryInBits(bits, 4, (string[5] - '0'));
-        calculateDirectoryInBits(bits, 7, (string[8] - '0'));
+        calculateDirectoryInBits(bits, 4, string[5]);
+        calculateDirectoryInBits(bits, 7, string[8]);
         if (string[10] == 'R') {
-            calculateDirectoryInBits(bits, 13, (string[11] - '0'));
+            calculateDirectoryInBits(bits, 13, string[11]);
         }
             //imm5
         else {
@@ -35,20 +40,15 @@ char *machineCodeConverter(const char *string, int programCounter) {
             //Figure out how to make array in function call
             char temp[3] = {string[11], string[12], string[13]};
             //bit 12,13,14,15
-            valueToCharArrayInBits(bits,
-                                   11,
-                                   5,
-                                   charToInt(temp, 0));
-
-
+            valueToCharArrayInBits(bits, 11, 5, charToInt(temp, 0));
         }
     }
         //NOT
     else if (string[0] == 'N') {
         bits[0] = '1';
         bits[3] = '1';
-        calculateDirectoryInBits(bits, 4, (string[5] - '0'));
-        calculateDirectoryInBits(bits, 7, (string[8] - '0'));
+        calculateDirectoryInBits(bits, 4, string[5]);
+        calculateDirectoryInBits(bits, 7, string[8]);
         bits[10] = '1';
         bits[11] = '1';
         bits[12] = '1';
@@ -72,7 +72,6 @@ char *machineCodeConverter(const char *string, int programCounter) {
             bits[6] = '1';
             pos++;
         }
-        valueToCharArrayInBits(bits, 9, 8, charToInt(string, pos));
     }
         //LDR
     else if (string[0] == 'L') {
@@ -80,14 +79,15 @@ char *machineCodeConverter(const char *string, int programCounter) {
         //LDR
         if (string[2] == 'R') {
             bits[1] = '1';
+            calculateDirectoryInBits(bits, 4, string[5]);
+            calculateDirectoryInBits(bits, 7, string[8]);
         }
             //PCoffset9 here
             //BaseR is where we start from. 3000x
             //Step 2. Need label for it
-
-
-            //LD (is still here to show LD is considered)
+            //LD
         else {
+            calculateDirectoryInBits(bits, 4, string[4]);
             bits[1] = '0';
         }
     }
