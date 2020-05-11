@@ -93,28 +93,33 @@ void hexaDecimalToBinary(char *bits, const char *string, int startingPos) {
             {
                 case '0':
                     printf("%s", "value: ");
-                printf("%c", "0000");
+                printf("%s", "0000");
                 printf("%s", "\n");
-                bits[binaryCounter] = '1';
-                bits[binaryCounter + 1] = '1';
-                bits[binaryCounter + 2] = '1';
-                bits[binaryCounter + 3] = '1';
+                bits[binaryCounter] = '0';
+                bits[binaryCounter + 1] = '0';
+                bits[binaryCounter + 2] = '0';
+                bits[binaryCounter + 3] = '0';
                 binaryCounter += 4;
                 break;
                 case '1':
                     printf("%s", "value: ");
-                printf("%c", "0001");
+                printf("%s", "0001");
                 printf("%s", "\n");
                 break;
                 case '2':
                     printf("%s", "value: ");
-                printf("%c", "0010");
+                printf("%s", "0010");
                 printf("%s", "\n");
                 break;
                 case '3':
                     printf("%s", "value: ");
-                printf("%c", "0011");
+                printf("%s", "0011");
                 printf("%s", "\n");
+                bits[binaryCounter] = '0';
+                bits[binaryCounter + 1] = '0';
+                bits[binaryCounter + 2] = '1';
+                bits[binaryCounter + 3] = '1';
+                binaryCounter += 4;
                 break;
                 case '4':
                     printf("%s", "value: ");
@@ -183,7 +188,7 @@ void hexaDecimalToBinary(char *bits, const char *string, int startingPos) {
                 printf("%s", "\n");
                 break;
                 default:
-                    printf("%s", "Invalid hexadecimal input." + string[i]);
+                    ;
             }
         }
         i++;
