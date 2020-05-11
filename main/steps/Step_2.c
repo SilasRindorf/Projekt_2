@@ -4,9 +4,10 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-char *machineCodeConverter(const char *string);
+char *machineCodeConverter(const char *string,int programCounter);
 
 void step2(char *filepath){
+    int programCounter = 3000;
     FILE *fp;
     char line[20000];
     fp = fopen( filepath, "r");
@@ -16,7 +17,8 @@ void step2(char *filepath){
     }
     while (fgets(line, 20000, fp) != NULL) {
         printf("%s", line);
-        printf(machineCodeConverter(line));
+        printf(machineCodeConverter(line,programCounter));
+        programCounter++;
     }
     exit(0);
     fclose(fp);

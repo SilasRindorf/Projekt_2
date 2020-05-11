@@ -57,14 +57,15 @@ int charToInt(char *chars, int pos) {
     }
     counter = pos;
     while (1) {
-        if (chars[counter] == '\0') {
+        if (chars[counter] == '\0' || chars[counter] == '\n') {
             if (negativeNumber) {
-                return -number;
+                number -= number * 2;
+                return number;
             }
             return number;
         }
         number *= 10;
-        number = chars[counter] - '0';
+        number += chars[counter] - '0';
         counter++;
     }
 }
@@ -74,7 +75,15 @@ void valueToCharArrayInBits(char *bits, int startBit, int bitsAvailable, int val
     bitsAvailable--;
     int number = doublePower(bitsAvailable);
     int counter = 0;
+    bool negativeNumber = false;
+    if (value < 0) {
+        value *= -2;
+        negativeNumber = true;
+    }
     for (int i = bitsAvailable + 1; i > 0; i--) {
+        // printf("%s","value: ");
+        // printf("%i", value - offset - number);
+        // printf("%s","\n");
         if (value - offset - number >= 0) {
             bits[startBit + counter] = '1';
             offset += number;
@@ -82,4 +91,14 @@ void valueToCharArrayInBits(char *bits, int startBit, int bitsAvailable, int val
         counter++;
         number = doublePower(bitsAvailable - counter);
     }
+    if (negativeNumber) {
+        for (int i = 0; i < bitsAvailable; i++) {
+            if (bits[startBit + i] == '1')
+                bits[startBit + i] = '0';
+            else if (bits[startBit + i] == '0')
+                bits[startBit + i] = '1';
+        }
+        bits[startBit] = '1';
+    }
+
 }
