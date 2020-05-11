@@ -1,16 +1,9 @@
 //
 // Created by Silas on 11-05-2020.
 //
-#include <stdio.h>
-
 void resetCharArray(char *chars, int size);
-
-void calculateDirectoryInBits(char *bits, int startBit, int directory);
-
-int charTo2DigitInt(const char chars[2]);
-
+void calculateDirectoryInBits(char *bits, int startBit, char directory);
 void valueToCharArrayInBits(char *bits, int startBit, int bitsAvailable, int value);
-
 int charToInt(char *chars, int pos);
 
 //Verdens bedste debugger
@@ -24,8 +17,7 @@ char *machineCodeConverter(const char *string, int programCounter) {
     //Set all 'bits' to 0 but not \n and \0 value at [16] and [17]
     resetCharArray(bits, 16);
     //OP code first
-    //Then parameters
-    //ADD
+
     if (string[0] == 'A' && string[1] == 'D') {
         bits[3] = '1';
         calculateDirectoryInBits(bits, 4, string[5]);
@@ -82,20 +74,19 @@ char *machineCodeConverter(const char *string, int programCounter) {
             calculateDirectoryInBits(bits, 4, string[5]);
             calculateDirectoryInBits(bits, 7, string[8]);
         }
-            //PCoffset9 here
-            //BaseR is where we start from. 3000x
-            //Step 2. Need label for it
+            //Offset6 here
             //LD
         else {
             calculateDirectoryInBits(bits, 4, string[4]);
             bits[1] = '0';
+            //PCoffset9 here
         }
     }
         //ST
     else if (string[0] == 'S') {
-
         bits[2] = '1';
         bits[3] = '1';
+        calculateDirectoryInBits(bits, 4, string[4]);
         //PCoffset9 here
         //Step 2. Need label for it
     }

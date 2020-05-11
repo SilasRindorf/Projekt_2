@@ -12,3 +12,4 @@ BR -25
 BRz 25
 LD R7
 LDR R7 R7
+ST R7
