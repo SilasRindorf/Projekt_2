@@ -1,6 +1,6 @@
 #include <stdio.h>
-char *machineCodeConverter(const char *string);
 void *step2(char *filepath);
+char *machineCodeConverter(const char *string,int programCounter);
 
 //Main function
 int main() {

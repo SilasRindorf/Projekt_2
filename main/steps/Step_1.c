@@ -1,6 +1,7 @@
 //
 // Created by Silas on 11-05-2020.
 //
+#include <stdio.h>
 void resetCharArray(char *chars, int size);
 void calculateDirectoryInBits(char *bits, int startBit, int directory);
 int charTo2DigitInt(const char chars[2]);

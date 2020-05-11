@@ -1,7 +1,6 @@
-//
-// Created by Silas on 11-05-2020.
-//
 #include <stdio.h>
+#include <stdbool.h>
+
 
 void resetCharArray(char *chars, int size) {
     for (int i = 0; i < size; i++) {
@@ -33,6 +32,7 @@ void calculateDirectoryInBits(char *bits, int startBit, int directory) {
         bits[startBit + 2] = '1';
     }
 }
+
 //TEMP FUNCTION
 //TODO MAKE PERMANENT FUNCTION
 int charTo2DigitInt(const char chars[2]) {
@@ -47,12 +47,34 @@ int charTo2DigitInt(const char chars[2]) {
     return number;
 }
 
+int charToInt(char *chars, int pos) {
+    int number = 0;
+    int counter;
+    bool negativeNumber = false;
+    if (chars[pos] == '-') {
+        negativeNumber = true;
+        pos++;
+    }
+    counter = pos;
+    while (1) {
+        if (chars[counter] == '\0') {
+            if (negativeNumber) {
+                return -number;
+            }
+            return number;
+        }
+        number *= 10;
+        number = chars[counter] - '0';
+        counter++;
+    }
+}
+
 void valueToCharArrayInBits(char *bits, int startBit, int bitsAvailable, int value) {
     int offset = 0;
     bitsAvailable--;
     int number = doublePower(bitsAvailable);
     int counter = 0;
-    for (int i = bitsAvailable+1; i > 0; i--) {
+    for (int i = bitsAvailable + 1; i > 0; i--) {
         if (value - offset - number >= 0) {
             bits[startBit + counter] = '1';
             offset += number;
