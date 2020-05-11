@@ -90,5 +90,8 @@ char *machineCodeConverter(const char *string, int programCounter) {
         //PCoffset9 here
         //Step 2. Need label for it
     }
+    else if(string[0] == '.'){
+
+    }
     return bits;
 }
