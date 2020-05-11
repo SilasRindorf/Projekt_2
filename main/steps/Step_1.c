@@ -113,6 +113,7 @@ char *machineCodeConverter(const char *string, int programCounter) {
         }
     }
         //.STRINGZ Kan også forklare denne hvis det er. Lidt dårlig kode, men hey. Blev lavet sent xD
+        // Evt omdøbe navnet på metoden *ThinkingEmoji*
     else if(string[0] == '.' && string[1] == 'S'){
         stringzErNogetLort(string,bits);
         for (int i = 0; i < 16; ++i) {
