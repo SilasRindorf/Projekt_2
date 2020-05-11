@@ -81,8 +81,7 @@ void valueToCharArrayInBits(char *bits, int startBit, int bitsAvailable, int val
         value *= -1;
         negativeNumber = true;
     }
-    for (int i = bitsAvailable; i > 0; i--) {
-
+    for (int i = bitsAvailable + 1; i > 0; i--) {
         if (value - offset - number >= 0) {
             bits[startBit + counter] = '1';
             offset += number;
@@ -91,7 +90,7 @@ void valueToCharArrayInBits(char *bits, int startBit, int bitsAvailable, int val
         number = doublePower(bitsAvailable - counter);
     }
     if (negativeNumber) {
-        for (int i = 0; i < bitsAvailable; i++) {
+        for (int i = 0; i < bitsAvailable + 1; i++) {
             if (bits[startBit + i] == '1')
                 bits[startBit + i] = '0';
             else if (bits[startBit + i] == '0')
