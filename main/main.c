@@ -1,8 +1,5 @@
 #include <stdio.h>
-#include "Step_1.c"
-#include "assist Functions/bits.c"
 char *machineCodeConverter(const char *string);
-
 
 //Main function
 int main() {

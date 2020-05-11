@@ -1,7 +1,9 @@
 //
 // Created by Silas on 11-05-2020.
 //
-#include "assist Functions/bits.c"
+void resetCharArray(char *chars, int size);
+void calculateDirectoryInBits(char *bits, int startBit, int directory);
+void calculateValueInBits(char *bits, int startBit, int bitsAvailable, int value);
 
 char *machineCodeConverter(const char *string) {
     //Empty command
