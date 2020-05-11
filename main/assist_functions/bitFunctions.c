@@ -93,94 +93,169 @@ void hexaDecimalToBinary(char *bits, const char *string, int startingPos) {
             {
                 case '0':
                     printf("%s", "value: ");
-                printf("%c", "0000");
+                printf("%c", 0000);
+                printf("%s", "\n");
+                bits[binaryCounter] = '0';
+                bits[binaryCounter + 1] = '0';
+                bits[binaryCounter + 2] = '0';
+                bits[binaryCounter + 3] = '0';
+                binaryCounter += 4;
+                break;
+                case '1':
+                    printf("%s", "value: ");
+                printf("%c", 0001);
+                printf("%s", "\n");
+                bits[binaryCounter] = '0';
+                bits[binaryCounter + 1] = '0';
+                bits[binaryCounter + 2] = '0';
+                bits[binaryCounter + 3] = '1';
+                binaryCounter += 4;
+                break;
+                case '2':
+                    printf("%s", "value: ");
+                printf("%c", 0010);
+                printf("%s", "\n");
+                bits[binaryCounter] = '0';
+                bits[binaryCounter + 1] = '0';
+                bits[binaryCounter + 2] = '1';
+                bits[binaryCounter + 3] = '0';
+                binaryCounter += 4;
+                break;
+                case '3':
+                    printf("%s", "value: ");
+                printf("%c", 0011);
+                printf("%s", "\n");
+                bits[binaryCounter] = '0';
+                bits[binaryCounter + 1] = '0';
+                bits[binaryCounter + 2] = '1';
+                bits[binaryCounter + 3] = '1';
+                binaryCounter += 4;
+                break;
+                case '4':
+                    printf("%s", "value: ");
+                printf("%c", 0100);
+                printf("%s", "\n");
+                bits[binaryCounter] = '0';
+                bits[binaryCounter + 1] = '1';
+                bits[binaryCounter + 2] = '0';
+                bits[binaryCounter + 3] = '0';
+                binaryCounter += 4;
+                break;
+                case '5':
+                    printf("%s", "value: ");
+                printf("%c", 0101);
+                printf("%s", "\n");
+                bits[binaryCounter] = '0';
+                bits[binaryCounter + 1] = '1';
+                bits[binaryCounter + 2] = '0';
+                bits[binaryCounter + 3] = '1';
+                binaryCounter += 4;
+                break;
+                case '6':
+                    printf("%s", "value: ");
+                printf("%c", 0110);
+                printf("%s", "\n");
+                bits[binaryCounter] = '0';
+                bits[binaryCounter + 1] = '1';
+                bits[binaryCounter + 2] = '1';
+                bits[binaryCounter + 3] = '0';
+                binaryCounter += 4;
+                break;
+                case '7':
+                    printf("%s", "value: ");
+                printf("%c", 0111);
+                printf("%s", "\n");
+                bits[binaryCounter] = '0';
+                bits[binaryCounter + 1] = '1';
+                bits[binaryCounter + 2] = '1';
+                bits[binaryCounter + 3] = '1';
+                binaryCounter += 4;
+                break;
+                case '8':
+                    printf("%s", "value: ");
+                printf("%c", 1000);
+                printf("%s", "\n");
+                bits[binaryCounter] = '1';
+                bits[binaryCounter + 1] = '0';
+                bits[binaryCounter + 2] = '0';
+                bits[binaryCounter + 3] = '0';
+                binaryCounter += 4;
+                break;
+                case '9':
+                    printf("%s", "value: ");
+                printf("%c", 1001);
+                printf("%s", "\n");
+                bits[binaryCounter] = '1';
+                bits[binaryCounter + 1] = '0';
+                bits[binaryCounter + 2] = '0';
+                bits[binaryCounter + 3] = '1';
+                binaryCounter += 4;
+                break;
+                case 'a':
+                case 'A':
+                    printf("%s", "value: ");
+                printf("%c", 1010);
+                printf("%s", "\n");
+                bits[binaryCounter] = '1';
+                bits[binaryCounter + 1] = '0';
+                bits[binaryCounter + 2] = '1';
+                bits[binaryCounter + 3] = '0';
+                binaryCounter += 4;
+                break;
+                case 'b':
+                case 'B':
+                    printf("%s", "value: ");
+                printf("%c", 1011);
+                printf("%s", "\n");
+                bits[binaryCounter] = '1';
+                bits[binaryCounter + 1] = '0';
+                bits[binaryCounter + 2] = '1';
+                bits[binaryCounter + 3] = '1';
+                binaryCounter += 4;
+                break;
+                case 'c':
+                case 'C':
+                    printf("%s", "value: ");
+                printf("%c", 1100);
+                printf("%s", "\n");
+                bits[binaryCounter] = '1';
+                bits[binaryCounter + 1] = '1';
+                bits[binaryCounter + 2] = '0';
+                bits[binaryCounter + 3] = '0';
+                binaryCounter += 4;
+                break;
+                case 'd':
+                case 'D':
+                    printf("%s", "value: ");
+                printf("%c", 1101);
+                printf("%s", "\n");
+                bits[binaryCounter] = '1';
+                bits[binaryCounter + 1] = '1';
+                bits[binaryCounter + 2] = '0';
+                bits[binaryCounter + 3] = '1';
+                binaryCounter += 4;
+                break;
+                case 'e':
+                case 'E':
+                    printf("%s", "value: ");
+                printf("%c", 1110);
+                printf("%s", "\n");
+                bits[binaryCounter] = '1';
+                bits[binaryCounter + 1] = '1';
+                bits[binaryCounter + 2] = '1';
+                bits[binaryCounter + 3] = '0';
+                binaryCounter += 4;
+                break;
+                case 'f':
+                case 'F':
+                    printf("%s", "value: ");
+                printf("%c", 1111);
                 printf("%s", "\n");
                 bits[binaryCounter] = '1';
                 bits[binaryCounter + 1] = '1';
                 bits[binaryCounter + 2] = '1';
                 bits[binaryCounter + 3] = '1';
                 binaryCounter += 4;
-                break;
-                case '1':
-                    printf("%s", "value: ");
-                printf("%c", "0001");
-                printf("%s", "\n");
-                break;
-                case '2':
-                    printf("%s", "value: ");
-                printf("%c", "0010");
-                printf("%s", "\n");
-                break;
-                case '3':
-                    printf("%s", "value: ");
-                printf("%c", "0011");
-                printf("%s", "\n");
-                break;
-                case '4':
-                    printf("%s", "value: ");
-                printf("%c", "0100");
-                printf("%s", "\n");
-                break;
-                case '5':
-                    printf("%s", "value: ");
-                printf("%c", "0101");
-                printf("%s", "\n");
-                break;
-                case '6':
-                    printf("%s", "value: ");
-                printf("%c", "0110");
-                printf("%s", "\n");
-                break;
-                case '7':
-                    printf("%s", "value: ");
-                printf("%c", "0111");
-                printf("%s", "\n");
-                break;
-                case '8':
-                    printf("%s", "value: ");
-                printf("%c", "1000");
-                printf("%s", "\n");
-                break;
-                case '9':
-                    printf("%s", "value: ");
-                printf("%c", "1001");
-                printf("%s", "\n");
-                break;
-                case 'a':
-                case 'A':
-                    printf("%s", "value: ");
-                printf("%c", "1010");
-                printf("%s", "\n");
-                break;
-                case 'b':
-                case 'B':
-                    printf("%s", "value: ");
-                printf("%c", "1011");
-                printf("%s", "\n");
-                break;
-                case 'c':
-                case 'C':
-                    printf("%s", "value: ");
-                printf("%c", "1100");
-                printf("%s", "\n");
-                break;
-                case 'd':
-                case 'D':
-                    printf("%s", "value: ");
-                printf("%c", "1101");
-                printf("%s", "\n");
-                break;
-                case 'e':
-                case 'E':
-                    printf("%s", "value: ");
-                printf("%c", "1110");
-                printf("%s", "\n");
-                break;
-                case 'f':
-                case 'F':
-                    printf("%s", "value: ");
-                printf("%c", "1111");
-                printf("%s", "\n");
                 break;
                 default:
                     printf("%s", "Invalid hexadecimal input." + string[i]);
