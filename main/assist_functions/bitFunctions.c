@@ -1,4 +1,5 @@
 #include <stdbool.h>
+#include <stdio.h>
 void resetCharArray(char *chars, int size) {
     for (int i = 0; i < size; i++) {
         chars[i] = '0';
@@ -80,5 +81,105 @@ void valueToCharArrayInBits(char *bits, int startBit, int bitsAvailable, int val
                 bits[startBit + i] = '1';
         }
         bits[startBit] = '1';
+    }
+}
+
+void hexaDecimalToBinary(char *bits, int startBit, int bitsAvailable, char* stringz) {
+    int i = -1;
+    while (stringz[i]) {
+        i++;
+        switch (stringz[i]) {
+            {
+                case '0':
+                    printf("%s", "value: ");
+                printf("%c", "0000");
+                printf("%s", "\n");
+                break;
+                case '1':
+                    printf("%s", "value: ");
+                printf("%c", "0001");
+                printf("%s", "\n");
+                break;
+                case '2':
+                    printf("%s", "value: ");
+                printf("%c", "0010");
+                printf("%s", "\n");
+                break;
+                case '3':
+                    printf("%s", "value: ");
+                printf("%c", "0011");
+                printf("%s", "\n");
+                break;
+                case '4':
+                    printf("%s", "value: ");
+                printf("%c", "0100");
+                printf("%s", "\n");
+                break;
+                case '5':
+                    printf("%s", "value: ");
+                printf("%c", "0101");
+                printf("%s", "\n");
+                break;
+                case '6':
+                    printf("%s", "value: ");
+                printf("%c", "0110");
+                printf("%s", "\n");
+                break;
+                case '7':
+                    printf("%s", "value: ");
+                printf("%c", "0111");
+                printf("%s", "\n");
+                break;
+                case '8':
+                    printf("%s", "value: ");
+                printf("%c", "1000");
+                printf("%s", "\n");
+                break;
+                case '9':
+                    printf("%s", "value: ");
+                printf("%c", "1001");
+                printf("%s", "\n");
+                break;
+                case 'a':
+                case 'A':
+                    printf("%s", "value: ");
+                printf("%c", "1010");
+                printf("%s", "\n");
+                break;
+                case 'b':
+                case 'B':
+                    printf("%s", "value: ");
+                printf("%c", "1011");
+                printf("%s", "\n");
+                break;
+                case 'c':
+                case 'C':
+                    printf("%s", "value: ");
+                printf("%c", "1100");
+                printf("%s", "\n");
+                break;
+                case 'd':
+                case 'D':
+                    printf("%s", "value: ");
+                printf("%c", "1101");
+                printf("%s", "\n");
+                break;
+                case 'e':
+                case 'E':
+                    printf("%s", "value: ");
+                printf("%c", "1110");
+                printf("%s", "\n");
+                break;
+                case 'f':
+                case 'F':
+                    printf("%s", "value: ");
+                printf("%c", "1111");
+                printf("%s", "\n");
+                break;
+                default:
+                    printf("Invalid hexadecimal input.");
+            }
+        }
+
     }
 }
