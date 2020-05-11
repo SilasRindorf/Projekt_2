@@ -53,10 +53,6 @@ void valueToCharArrayInBits(char *bits, int startBit, int bitsAvailable, int val
     int number = doublePower(bitsAvailable);
     int counter = 0;
     for (int i = bitsAvailable+1; i > 0; i--) {
-        printf("%s","number: ");
-        printf("%i",number);
-        printf("%s","\n");
-
         if (value - offset - number >= 0) {
             bits[startBit + counter] = '1';
             offset += number;
