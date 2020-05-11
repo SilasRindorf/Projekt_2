@@ -5,6 +5,7 @@ void resetCharArray(char *chars, int size);
 void calculateDirectoryInBits(char *bits, int startBit, char directory);
 void valueToCharArrayInBits(char *bits, int startBit, int bitsAvailable, int value);
 int charToInt(char *chars, int pos);
+void hexaDecimalToBinary(char *bits, const char *string,int startingPos);
 
 //Verdens bedste debugger
 //printf("%s","value: ");
@@ -90,8 +91,12 @@ char *machineCodeConverter(const char *string, int programCounter) {
         //PCoffset9 here
         //Step 2. Need label for it
     }
-    else if(string[0] == '.'){
-
+        //.ORIG x3000
+        //.FILL x3000
+        //.BLKW x3000
+        //.FILL
+    else if(string[0] == '.' && string[1] == 'O'){
+        hexaDecimalToBinary(bits,string,7);
     }
     return bits;
 }

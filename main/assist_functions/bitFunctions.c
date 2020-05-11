@@ -1,5 +1,6 @@
 #include <stdbool.h>
 #include <stdio.h>
+
 void resetCharArray(char *chars, int size) {
     for (int i = 0; i < size; i++) {
         chars[i] = '0';
@@ -17,7 +18,7 @@ int doublePower(int powerTimes) {
 }
 
 void calculateDirectoryInBits(char *bits, int startBit, char directory) {
-    directory -='0';
+    directory -= '0';
     int offset = 0;
     if (directory - offset - 4 >= 0) {
         bits[startBit] = '1';
@@ -84,16 +85,21 @@ void valueToCharArrayInBits(char *bits, int startBit, int bitsAvailable, int val
     }
 }
 
-void hexaDecimalToBinary(char *bits, int startBit, int bitsAvailable, char* stringz) {
-    int i = -1;
-    while (stringz[i]) {
-        i++;
-        switch (stringz[i]) {
+void hexaDecimalToBinary(char *bits, const char *string, int startingPos) {
+    int i = startingPos;
+    int binaryCounter = 0;
+    while (string[i]) {
+        switch (string[i]) {
             {
                 case '0':
                     printf("%s", "value: ");
                 printf("%c", "0000");
                 printf("%s", "\n");
+                bits[binaryCounter] = '1';
+                bits[binaryCounter + 1] = '1';
+                bits[binaryCounter + 2] = '1';
+                bits[binaryCounter + 3] = '1';
+                binaryCounter += 4;
                 break;
                 case '1':
                     printf("%s", "value: ");
@@ -177,9 +183,9 @@ void hexaDecimalToBinary(char *bits, int startBit, int bitsAvailable, char* stri
                 printf("%s", "\n");
                 break;
                 default:
-                    printf("Invalid hexadecimal input.");
+                    printf("%s", "Invalid hexadecimal input." + string[i]);
             }
         }
-
+        i++;
     }
 }
