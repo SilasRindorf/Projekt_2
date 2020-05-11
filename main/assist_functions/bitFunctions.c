@@ -76,14 +76,13 @@ void valueToCharArrayInBits(char *bits, int startBit, int bitsAvailable, int val
     int number = doublePower(bitsAvailable);
     int counter = 0;
     bool negativeNumber = false;
+
     if (value < 0) {
-        value *= -2;
+        value *= -1;
         negativeNumber = true;
     }
-    for (int i = bitsAvailable + 1; i > 0; i--) {
-        // printf("%s","value: ");
-        // printf("%i", value - offset - number);
-        // printf("%s","\n");
+    for (int i = bitsAvailable; i > 0; i--) {
+
         if (value - offset - number >= 0) {
             bits[startBit + counter] = '1';
             offset += number;

@@ -31,25 +31,15 @@ char *machineCodeConverter(const char *string, int programCounter) {
             //imm5
         else {
             bits[10] = '1';
-            if (string[11] == '-') {
-                bits[11] = '1';
-                //Figure out how to make array in function call
-                const char temp[2] = {string[12], string[13]};
-                //bit 12,13,14,15
-                valueToCharArrayInBits(bits,
-                                       11,
-                                       5,
-                                       charTo2DigitInt(temp));
-                //NOT values
-            } else {
-                //Figure out how to make array in function call
-                const char temp[2] = {string[11], string[12]};
-                //bit 12,13,14,15
-                valueToCharArrayInBits(bits,
-                                       11,
-                                       5,
-                                       charTo2DigitInt(temp));
-            }
+
+            //Figure out how to make array in function call
+            char temp[3] = {string[11], string[12], string[13]};
+            //bit 12,13,14,15
+            valueToCharArrayInBits(bits,
+                                   11,
+                                   5,
+                                   charToInt(temp, 0));
+
 
         }
     }
