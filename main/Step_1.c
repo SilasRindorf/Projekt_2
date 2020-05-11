@@ -1,9 +1,11 @@
 //
 // Created by Silas on 11-05-2020.
 //
+
 void resetCharArray(char *chars, int size);
 void calculateDirectoryInBits(char *bits, int startBit, int directory);
-void calculateValueInBits(char *bits, int startBit, int bitsAvailable, int value);
+int charTo2DigitInt(const char chars[2]);
+void valueToCharArrayInBits(char *bits, int startBit, int bitsAvailable, int value);
 
 char *machineCodeConverter(const char *string) {
     //Empty command
@@ -17,15 +19,24 @@ char *machineCodeConverter(const char *string) {
         bits[3] = '1';
         calculateDirectoryInBits(bits, 4, (string[5] - '0'));
         calculateDirectoryInBits(bits, 7, (string[8] - '0'));
-        if (string[10] == 'R'){
+        if (string[10] == 'R') {
             calculateDirectoryInBits(bits, 13, (string[11] - '0'));
         }
-        else{
+            //imm5
+        else {
             bits[10] = '1';
             if (string[11] == '-')
                 bits[11] = '1';
-        }
+            else {
+                const char temp[2] = {string[11],string[12]};
+                //bit 12,13,14,15
+                valueToCharArrayInBits(bits,
+                        12,
+                        4,
+                        charTo2DigitInt(temp));
+            }
 
+        }
     }
         //NOT
     else if (string[0] == 'N') {
