@@ -88,104 +88,77 @@ void valueToCharArrayInBits(char *bits, int startBit, int bitsAvailable, int val
 void hexaDecimalToBinary(char *bits, const char *string, int startingPos) {
     int i = startingPos;
     int binaryCounter = 0;
+    if (string[i] == 'x') {
+        i++;
+    }
     while (string[i]) {
         switch (string[i]) {
             {
                 case '0':
-                    printf("%s", "value: ");
-                printf("%c", 0000);
-                printf("%s", "\n");
-                bits[binaryCounter] = '0';
+                    bits[binaryCounter] = '0';
                 bits[binaryCounter + 1] = '0';
                 bits[binaryCounter + 2] = '0';
                 bits[binaryCounter + 3] = '0';
                 binaryCounter += 4;
                 break;
                 case '1':
-                    printf("%s", "value: ");
-                printf("%c", 0001);
-                printf("%s", "\n");
-                bits[binaryCounter] = '0';
+                    bits[binaryCounter] = '0';
                 bits[binaryCounter + 1] = '0';
                 bits[binaryCounter + 2] = '0';
                 bits[binaryCounter + 3] = '1';
                 binaryCounter += 4;
                 break;
                 case '2':
-                    printf("%s", "value: ");
-                printf("%c", 0010);
-                printf("%s", "\n");
-                bits[binaryCounter] = '0';
+                    bits[binaryCounter] = '0';
                 bits[binaryCounter + 1] = '0';
                 bits[binaryCounter + 2] = '1';
                 bits[binaryCounter + 3] = '0';
                 binaryCounter += 4;
                 break;
                 case '3':
-                    printf("%s", "value: ");
-                printf("%c", 0011);
-                printf("%s", "\n");
-                bits[binaryCounter] = '0';
+                    bits[binaryCounter] = '0';
                 bits[binaryCounter + 1] = '0';
                 bits[binaryCounter + 2] = '1';
                 bits[binaryCounter + 3] = '1';
                 binaryCounter += 4;
                 break;
                 case '4':
-                    printf("%s", "value: ");
-                printf("%c", 0100);
-                printf("%s", "\n");
-                bits[binaryCounter] = '0';
+                    bits[binaryCounter] = '0';
                 bits[binaryCounter + 1] = '1';
                 bits[binaryCounter + 2] = '0';
                 bits[binaryCounter + 3] = '0';
                 binaryCounter += 4;
                 break;
                 case '5':
-                    printf("%s", "value: ");
-                printf("%c", 0101);
-                printf("%s", "\n");
-                bits[binaryCounter] = '0';
+                    bits[binaryCounter] = '0';
                 bits[binaryCounter + 1] = '1';
                 bits[binaryCounter + 2] = '0';
                 bits[binaryCounter + 3] = '1';
                 binaryCounter += 4;
                 break;
                 case '6':
-                    printf("%s", "value: ");
-                printf("%c", 0110);
-                printf("%s", "\n");
-                bits[binaryCounter] = '0';
+                    bits[binaryCounter] = '0';
                 bits[binaryCounter + 1] = '1';
                 bits[binaryCounter + 2] = '1';
                 bits[binaryCounter + 3] = '0';
                 binaryCounter += 4;
                 break;
                 case '7':
-                    printf("%s", "value: ");
-                printf("%c", 0111);
-                printf("%s", "\n");
-                bits[binaryCounter] = '0';
+                    bits[binaryCounter] = '0';
                 bits[binaryCounter + 1] = '1';
                 bits[binaryCounter + 2] = '1';
                 bits[binaryCounter + 3] = '1';
                 binaryCounter += 4;
                 break;
                 case '8':
-                    printf("%s", "value: ");
-                printf("%c", 1000);
-                printf("%s", "\n");
-                bits[binaryCounter] = '1';
+                    bits[binaryCounter] = '1';
                 bits[binaryCounter + 1] = '0';
                 bits[binaryCounter + 2] = '0';
                 bits[binaryCounter + 3] = '0';
                 binaryCounter += 4;
                 break;
                 case '9':
-                    printf("%s", "value: ");
-                printf("%c", 1001);
-                printf("%s", "\n");
-                bits[binaryCounter] = '1';
+                    bits[binaryCounter] = '1';
                 bits[binaryCounter + 1] = '0';
                 bits[binaryCounter + 2] = '0';
                 bits[binaryCounter + 3] = '1';
@@ -193,10 +166,7 @@ void hexaDecimalToBinary(char *bits, const char *string, int startingPos) {
                 break;
                 case 'a':
                 case 'A':
-                    printf("%s", "value: ");
-                printf("%c", 1010);
-                printf("%s", "\n");
-                bits[binaryCounter] = '1';
+                    bits[binaryCounter] = '1';
                 bits[binaryCounter + 1] = '0';
                 bits[binaryCounter + 2] = '1';
                 bits[binaryCounter + 3] = '0';
@@ -204,10 +174,7 @@ void hexaDecimalToBinary(char *bits, const char *string, int startingPos) {
                 break;
                 case 'b':
                 case 'B':
-                    printf("%s", "value: ");
-                printf("%c", 1011);
-                printf("%s", "\n");
-                bits[binaryCounter] = '1';
+                    bits[binaryCounter] = '1';
                 bits[binaryCounter + 1] = '0';
                 bits[binaryCounter + 2] = '1';
                 bits[binaryCounter + 3] = '1';
@@ -215,10 +182,7 @@ void hexaDecimalToBinary(char *bits, const char *string, int startingPos) {
                 break;
                 case 'c':
                 case 'C':
-                    printf("%s", "value: ");
-                printf("%c", 1100);
-                printf("%s", "\n");
-                bits[binaryCounter] = '1';
+                    bits[binaryCounter] = '1';
                 bits[binaryCounter + 1] = '1';
                 bits[binaryCounter + 2] = '0';
                 bits[binaryCounter + 3] = '0';
@@ -226,10 +190,7 @@ void hexaDecimalToBinary(char *bits, const char *string, int startingPos) {
                 break;
                 case 'd':
                 case 'D':
-                    printf("%s", "value: ");
-                printf("%c", 1101);
-                printf("%s", "\n");
-                bits[binaryCounter] = '1';
+                    bits[binaryCounter] = '1';
                 bits[binaryCounter + 1] = '1';
                 bits[binaryCounter + 2] = '0';
                 bits[binaryCounter + 3] = '1';
@@ -237,10 +198,7 @@ void hexaDecimalToBinary(char *bits, const char *string, int startingPos) {
                 break;
                 case 'e':
                 case 'E':
-                    printf("%s", "value: ");
-                printf("%c", 1110);
-                printf("%s", "\n");
-                bits[binaryCounter] = '1';
+                    bits[binaryCounter] = '1';
                 bits[binaryCounter + 1] = '1';
                 bits[binaryCounter + 2] = '1';
                 bits[binaryCounter + 3] = '0';
@@ -248,19 +206,56 @@ void hexaDecimalToBinary(char *bits, const char *string, int startingPos) {
                 break;
                 case 'f':
                 case 'F':
-                    printf("%s", "value: ");
-                printf("%c", 1111);
-                printf("%s", "\n");
-                bits[binaryCounter] = '1';
+                    bits[binaryCounter] = '1';
                 bits[binaryCounter + 1] = '1';
                 bits[binaryCounter + 2] = '1';
                 bits[binaryCounter + 3] = '1';
                 binaryCounter += 4;
                 break;
-                default:
-                    printf("%s", "Invalid hexadecimal input." + string[i]);
+                default:;
             }
         }
         i++;
+    }
+}
+
+void stringzErNogetLort(char *string, char *bits) {
+    //Source https://www.geeksforgeeks.org/convert-string-binary-sequence/
+    //Rewrote the Java code into C code
+    int stringCounter = 10;
+    int bitCounter = 9;
+    int val = 0;
+    while (string[stringCounter] != '"') {
+        val = string[stringCounter];
+
+        if (string[stringCounter] != ' ') {
+            while (val > 0) {
+                if (val % 2 == 1) {
+                    bits[bitCounter] = '1';
+                    bitCounter++;
+                } else {
+                    bits[bitCounter] = '0';
+                    bitCounter++;
+                }
+                val /= 2;
+            }
+            int l, r;
+            r = 15;
+            for (l = 9; l < r; l++, r--) {
+                char temp = bits[l];
+                bits[l] = bits[r];
+                bits[r] = temp;
+            }
+        } else{
+            for (int i = 0; i < 16; ++i) {
+                if (i == 10){
+                    bits[10]='1';
+                } else bits[i] = '0';
+            }
+        }
+
+        bitCounter = 9;
+        stringCounter++;
+        printf("%s", bits);
     }
 }

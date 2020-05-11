@@ -1,11 +1,13 @@
 //
 // Created by Silas on 11-05-2020.
 //
+#include <stdio.h>
 void resetCharArray(char *chars, int size);
 void calculateDirectoryInBits(char *bits, int startBit, char directory);
 void valueToCharArrayInBits(char *bits, int startBit, int bitsAvailable, int value);
 int charToInt(char *chars, int pos);
 void hexaDecimalToBinary(char *bits, const char *string,int startingPos);
+void stringzErNogetLort(char* string,char* bits);
 
 //Verdens bedste debugger
 //printf("%s","value: ");
@@ -89,14 +91,38 @@ char *machineCodeConverter(const char *string, int programCounter) {
         bits[3] = '1';
         calculateDirectoryInBits(bits, 4, string[4]);
         //PCoffset9 here
-        //Step 2. Need label for it
+        //Step 3. Need label for it
     }
-        //.ORIG x3000
-        //.FILL x3000
-        //.BLKW x3000
-        //.FILL
+        //.ORIG
     else if(string[0] == '.' && string[1] == 'O'){
         hexaDecimalToBinary(bits,string,7);
+    }
+
+        //.FILL
+    else if(string[0] == '.' && string[1] == 'F'){
+        hexaDecimalToBinary(bits,string,6);
+    }
+        //.BLKW Den resevere hukommelse plads, men siden der kun er 9 bit signed til hukommelsen, så kan tallet ikke,
+        //være større end den mængde plads der er tilbage teknisk set. (Vi skal ikke køre det så det er finno.
+        // I kan slette denne kommentar når I har læst den. Mere til forståelse for jer.)
+        //Ændre venligst ikke I den. Kan forklare hvorfor den ser sådan her ud når jeg kommer på :)
+    else if(string[0] == '.' && string[1] == 'B'){
+        for (int i = 0; i<charToInt(string,6) - 1; i++){
+            printf("%s",bits);
+           // printf("%s","\n");
+        }
+    }
+        //.STRINGZ Kan også forklare denne hvis det er. Lidt dårlig kode, men hey. Blev lavet sent xD
+    else if(string[0] == '.' && string[1] == 'S'){
+        stringzErNogetLort(string,bits);
+        for (int i = 0; i < 16; ++i) {
+             bits[i] = '0';
+        }
+
+    }
+        // Forstår ikke helt hvad denne skal gøre, så er ikke lavet :)
+    else if(string[0] == '.' && string[1] == 'E'){
+
     }
     return bits;
 }
