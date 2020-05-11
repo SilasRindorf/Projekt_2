@@ -25,9 +25,25 @@ char *machineCodeConverter(const char *string) {
             //imm5
         else {
             bits[10] = '1';
-            if (string[11] == '-')
+            if (string[11] == '-'){
                 bits[11] = '1';
+                //Figure out how to make array in function call
+                const char temp[2] = {string[12],string[13]};
+                //bit 12,13,14,15
+                valueToCharArrayInBits(bits,
+                                       12,
+                                       4,
+                                       charTo2DigitInt(temp));
+                //NOT values
+                for (int i = 0; i < 4; i++){
+                    if (bits[12 + i] == '1')
+                        bits[12 + i] = '0';
+                    else if (bits[12 + i] == '0')
+                        bits[12 + i] = '1';
+                }
+            }
             else {
+                //Figure out how to make array in function call
                 const char temp[2] = {string[11],string[12]};
                 //bit 12,13,14,15
                 valueToCharArrayInBits(bits,
