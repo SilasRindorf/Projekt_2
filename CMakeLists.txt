@@ -3,4 +3,4 @@ project(Projekt_2 C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(Projekt_2 main/main.c main/Step_1.c "main/assist Functions/bits.c")
+add_executable(Projekt_2 main/main.c main/Step_1.c "main/assist_functions/bitFunctions.c")
