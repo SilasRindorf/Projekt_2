@@ -24,11 +24,11 @@ int main() {
             step2(input,output,programCounter);
         }
         else if (strcmp(choice,"Q") == 0) {
-            printf("%s","Closing program");
+            printf("%s","Closing program\n");
             return 0;
         }
         else
-            printf("%s","Not a valid command");
+            printf("%s","Not a valid command\n");
     }
 }
 
