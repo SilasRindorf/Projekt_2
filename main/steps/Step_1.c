@@ -139,5 +139,4 @@ void step1(int *programCounterPointer, char *string) {
 
     }
     printf("%s", bits);
-    printf("%s", "\n");
 }
