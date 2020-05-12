@@ -52,7 +52,6 @@ void machineCodeConverter(const char *inputPath, const char *outputPath, int *pr
         char *bits = "0000000000000000\n\0";
         //Set all 'bits' to 0 but not \n and \0 value at [16] and [17]
         resetCharArray(bits, 16);
-
         if (string[0] == 'A' && string[1] == 'D') {}//ADD
         else if (string[0] == 'N' && string[1] == 'O' && string[2] == 'T') {}//NOT
         else if (string[0] == 'B' && string[1] == 'R') {}//BR
@@ -106,7 +105,7 @@ void machineCodeConverter(const char *inputPath, const char *outputPath, int *pr
         printf("%s", "Could not open file ", inputPath);
         exit(1);
     }
-    for (int j = 0; j < 100; ++j) {
+    for (int j = 0; j < 20; ++j) {
         printf("%s","value: ");
         if (labels[j] != NULL)
             printf("%s",labels[j]);
@@ -219,7 +218,7 @@ void machineCodeConverter(const char *inputPath, const char *outputPath, int *pr
             // Evt omdøbe navnet på metoden *ThinkingEmoji*
         else if (string[0] == '.' && string[1] == 'S') {
             stringz(string, bits, (int *) programCounter);
-            for (int i = 0; i < 15; ++i) {
+            for (int i = 0; i < 16; ++i) {
                 bits[i] = '0';
             }
 
