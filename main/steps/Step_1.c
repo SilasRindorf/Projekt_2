@@ -23,7 +23,6 @@ void stringz(char *string, char *bits, int *programCounter);
 void reserveMemory(char *string, int *programCounter, char *labels[], int *ints[]) {
     //.ORIG x
     if (string[0] == '.' && string[1] == 'O') {
-        //Progam counter her
         return;
 
     }
