@@ -7,7 +7,7 @@ void calculateDirectoryInBits(char *bits, int startBit, char directory);
 void valueToCharArrayInBits(char *bits, int startBit, int bitsAvailable, int value);
 int charToInt(char *chars, int pos);
 void hexaDecimalToBinary(char *bits, const char *string,int startingPos);
-void stringzErNogetLort(char* string,char* bits, int *programCounter);
+void stringz(char* string, char* bits, int *programCounter);
 
 //Verdens bedste debugger
 //printf("%s","value: ");
@@ -116,7 +116,7 @@ char *machineCodeConverter(const char *string, int *programCounter) {
         //.STRINGZ Kan også forklare denne hvis det er. Lidt dårlig kode, men hey. Blev lavet sent xD
         // Evt omdøbe navnet på metoden *ThinkingEmoji*
     else if(string[0] == '.' && string[1] == 'S'){
-        stringzErNogetLort(string,bits,programCounter);
+        stringz(string, bits, programCounter);
         for (int i = 0; i < 16; ++i) {
              bits[i] = '0';
         }

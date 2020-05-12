@@ -15,11 +15,21 @@ void step2(char *filepath){
         printf("%s", "Could not open file ", filepath);
         exit(1);
     }
-    while (fgets(line, 20000, fp) != NULL) {
-        printf("%s", line);
-        printf(machineCodeConverter(line,programCounter));
-        programCounter++;
+    FILE *outputFile;
+    char writeLine[20000];
+    outputFile = fopen("../resource/output.txt", "w");
+    if (outputFile == NULL) {
+        printf("%s", "Could not open file ", filepath);
+        exit(1);
     }
-    exit(0);
+    int counter = 1;
+    while (fgets(line, 20000, fp) != NULL) {
+        //printf("%s", line);
+        //printf(machineCodeConverter(line,programCounter));
+        fprintf(outputFile,machineCodeConverter(line,programCounter),counter);
+        programCounter++;
+        counter++;
+    }
     fclose(fp);
+    exit(0);
 }
