@@ -95,7 +95,7 @@ char *machineCodeConverter(const char *string, int programCounter) {
     }
         //.ORIG
     else if(string[0] == '.' && string[1] == 'O'){
-        hexaDecimalToBinary(bits,string,7);
+        hexaDecimalToBinary(bits,string,6);
     }
 
         //.FILL
