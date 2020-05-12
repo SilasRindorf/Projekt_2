@@ -20,41 +20,9 @@ void stringz(char *string, char *bits, int *programCounter);
 //printf("%s","value: ");
 //printf("%c",string[8]);
 //printf("%s","\n");
-void reserveMemory(char *string, int *programCounter, char *labels[], int *ints[]) {
-    //.ORIG x
-    if (string[0] == '.' && string[1] == 'O') {
-        return;
 
-    }
-        //.FILL
-    else if (string[0] == '.' && string[1] == 'F') {
-        return;
 
-    }
-
-        //.BLKW
-    else if (string[0] == '.' && string[1] == 'B') {
-        return;
-
-    }
-        //.STRINGZ
-    else if (string[0] == '.' && string[1] == 'S') {
-        return;
-
-    } else if (string[0] == '.' && string[1] == 'E') {
-        return;
-    } else if (string[0] != 'p') {
-        int counter = 0;
-        while ((int) ints[counter] != -1) {
-            counter++;
-        }
-        labels[counter] = string;
-        ints[counter] = programCounter;
-        //labels[programCounter] =
-    }
-}
-
-void machineCodeConverter(const char * inputPath,const char * outputPath, int *programCounter) {
+void machineCodeConverter(const char *inputPath, const char *outputPath, int *programCounter) {
     FILE *inputFile = fopen(inputPath, "r");
     if (inputFile == NULL) {
         printf("%s", "Could not open file ", inputPath);
@@ -66,9 +34,72 @@ void machineCodeConverter(const char * inputPath,const char * outputPath, int *p
         printf("%s", "Could not open file output");
         exit(2);
     }
-    char string[20000];
+    //const int MAXSIZE = 200;
+    char string[200];
     int counter = 0;
-    while (fgets(string, 20000, inputFile) != NULL) {
+
+
+
+    char labels[100];
+    int labelValue[100];
+    int labelCounter = 0;
+    while (fgets(string, /*MAXSIZE*/200, inputFile) != NULL) {
+        printf("%s", string);
+        //Empty command
+        char *bits = "0000000000000000\n\0";
+        //Set all 'bits' to 0 but not \n and \0 value at [16] and [17]
+        resetCharArray(bits, 16);
+
+        if (string[0] == 'A' && string[1] == 'D') {}//ADD
+        else if (string[0] == 'N') {}//NOT
+        else if (string[0] == 'B') {}//BR
+        else if (string[0] == 'L') {}//LDR/LD
+        else if (string[0] == 'S') {}//ST
+        else if (string[0] == '.') {
+            //.ORIG x
+            if (string[1] == 'O') {
+                //hexaDecimalToBinary(bits, string, 6);
+            }
+                //.FILL
+            else if ( string[1] == 'F') {
+                hexaDecimalToBinary(bits, string, 6);
+            }
+                //.BLKW
+            else if ( string[1] == 'B') {
+                for (int i = 0; i < charToInt(string, 6) - 1; i++) {
+                    //printf("%s",bits);
+                    programCounter++;
+                    // printf("%s","\n");
+                }
+            }
+                //.STRINGZ
+            else if (string[1] == 'S') {
+                stringz(string, bits, programCounter);
+                for (int i = 0; i < 15; ++i) {
+                    bits[i] = '0';
+                }
+            }
+                // END
+            else if (string[1] == 'E') {
+
+            }
+
+        }//LABEL
+        else if (string[0] != ' ' && string[0] != '\n') {
+            labels[labelCounter] = (char) string;
+            labelValue[labelCounter] = (int) programCounter;
+            labelCounter++;
+        }
+        programCounter++;
+        counter++;
+        printf("%s", bits);
+        //fprintf(outputPath, bits, counter);
+    }
+    counter = 0;
+    programCounter = (int *) 3000;
+
+
+    while (fgets(string, /*MAXSIZE*/200, inputFile) != NULL) {
         printf("%s", string);
         //Empty command
         char *bits = "0000000000000000\n\0";
@@ -180,7 +211,7 @@ void machineCodeConverter(const char * inputPath,const char * outputPath, int *p
         }
         programCounter++;
         counter++;
-        printf("%s",bits);
+        printf("%s", bits);
         //fprintf(outputPath, bits, counter);
     }
     fclose(inputFile);
