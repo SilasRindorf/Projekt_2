@@ -108,7 +108,7 @@ char *machineCodeConverter(const char *string, int *programCounter) {
         //Ændre venligst ikke I den. Kan forklare hvorfor den ser sådan her ud når jeg kommer på :)
     else if(string[0] == '.' && string[1] == 'B'){
         for (int i = 0; i<charToInt(string,6) - 1; i++){
-            printf("%s",bits);
+            //printf("%s",bits);
             programCounter++;
            // printf("%s","\n");
         }
@@ -117,7 +117,7 @@ char *machineCodeConverter(const char *string, int *programCounter) {
         // Evt omdøbe navnet på metoden *ThinkingEmoji*
     else if(string[0] == '.' && string[1] == 'S'){
         stringz(string, bits, programCounter);
-        for (int i = 0; i < 16; ++i) {
+        for (int i = 0; i < 15; ++i) {
              bits[i] = '0';
         }
 
