@@ -264,17 +264,12 @@ void stringz(char *string, char *bits, int *programCounter) {
 
 int findOffset(char labels[100][200],int labelvalue[100],int programCounter,char label[]){
     int counter = 0;
-    while (strcmp(labels[counter],label)!= 0){
-        counter++;
-        printf("%s", "value of str1: ");
-        printf("%s",label);
-        printf("%s", "\n");
-        printf("%s", "value of str2: ");
-        printf("%s",labels[counter]);
-        printf("%s", "\n");
-        printf("%s", "value of compare: ");
-        printf("%i",strcmp(labels[counter],label));
-        printf("%s", "\n");
+    int found = 1;
+    while (found){
+        if (labels[counter][0] == label[0]){
+            found = 0;
+        }
+        else counter++;
         if (counter == 100){
             return 10;
         }
