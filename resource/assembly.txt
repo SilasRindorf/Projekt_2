@@ -9,7 +9,6 @@ BRnzp X
 ST R7 C
 LDR R7 R7
 LDR R7 R7
-.END
 A
 .FILL
 B
@@ -18,3 +17,4 @@ C
 .BLKW 1
 MSG
 .STRINGZ "Hey dude"
+.END

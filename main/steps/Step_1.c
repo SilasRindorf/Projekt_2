@@ -190,13 +190,14 @@ void machineCodeConverter(const char *inputPath, const char *outputPath, int *pr
                 size_t len = strlen(string);
                 //0,1,2,3,4
                 //len = 5
-                char *offsetString = malloc(len-6);
+                /*char *offsetString = malloc(len-6);
                 offsetString = memcpy_s(offsetString,sizeof(offsetString),string + 6,sizeof(string));
 
                 printf("%s", "value: ");
                 printf("%i", findOffset(labels, labelValue, programCounter, offsetString));
                 printf("%s", "\n");
                 findOffset(labels, labelValue, programCounter, offsetString);
+                 */
             }
         }
             //ST
