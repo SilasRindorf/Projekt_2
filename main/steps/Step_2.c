@@ -25,6 +25,7 @@ void step2 (const char *inputPath, const char *outputPath, int *programCounterPo
         exit(1);
     }
     FILE *outputFile;
+    outputPath = "..\\resource\\output.txt";
     outputFile = fopen(outputPath, "w");
     if (outputFile == NULL) {
         printf("%s", "Could not open file output");
@@ -246,12 +247,12 @@ void step2 (const char *inputPath, const char *outputPath, int *programCounterPo
         else if (string[0] == '.' && string[1] == 'E') {
             return;
         }
-        programCounter++;
-        counter++;
         if (print){
             printf("%s", bits);
+            fprintf(outputFile, "%s",bits);
         }
-        fprintf(outputPath, bits, counter);
+        programCounter++;
+        counter++;
     }
     fclose(inputFile);
     fclose(outputFile);
