@@ -1,10 +1,10 @@
-
+.ORIG x3000
 LD R7 A
 LD R7 B
 X
-NOT R7 R7
-ADD R7 R7 #-1
-ADD R7 R7 #1
+NOT R2 R0
+ADD R1 R1 #-1
+ADD R0 R0 #1
 BRnzp X
 ST R7 C
 LDR R7 R7
@@ -17,3 +17,4 @@ C
 .BLKW 1
 MSG
 .STRINGZ "Hey dude"
+.END
