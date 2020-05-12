@@ -13,8 +13,11 @@ void stringz(char* string, char* bits, int *programCounter);
 //printf("%s","value: ");
 //printf("%c",string[8]);
 //printf("%s","\n");
+char** labels(const char *string, int *programCounter){
 
-char *machineCodeConverter(const char *string, int *programCounter) {
+}
+
+char *machineCodeConverter(const char *string, int *programCounter, char **labels) {
     //Empty command
     char *bits = "0000000000000000\n\0";
     //Set all 'bits' to 0 but not \n and \0 value at [16] and [17]

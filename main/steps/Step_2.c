@@ -27,6 +27,8 @@ void step2(char *filepath) {
     while (fgets(line, 20000, fp) != NULL) {
         //printf("%s", line);
         //printf(machineCodeConverter(line,programCounter));
+        fprintf(outputFile,line,counter);
+        counter++;
         fprintf(outputFile, machineCodeConverter(line,programCounter), counter);
         programCounter++;
         counter++;
