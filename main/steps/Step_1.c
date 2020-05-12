@@ -23,8 +23,8 @@ void stringz(char *string, char *bits, int *programCounter);
 //printf("%s","\n");
 
 
-void machineCodeConverter(const char *inputPath, const char *outputPath, int *programCounter) {
-    const int *constantProgramCounter = programCounter;
+void machineCodeConverter(const char *inputPath, const char *outputPath, int *programCounterPointer) {
+    int programCounter;
     FILE *inputFile = fopen(inputPath, "r");
     if (inputFile == NULL) {
         printf("%s", "Could not open file ", inputPath);
@@ -39,10 +39,13 @@ void machineCodeConverter(const char *inputPath, const char *outputPath, int *pr
     //const int MAXSIZE = 200;
     char string[200];
     int counter = 0;
-
-
-    char labels[100][/*MAXSIZE*/200];
     int labelValue[100];
+    char labels[100][/*MAXSIZE*/200];
+    for (int k = 0; k < 100; ++k) {
+        strcpy(labels[k],"Empty");
+        labelValue[k] = -1;
+    }
+
     int labelCounter = 0;
     while (fgets(string, /*MAXSIZE*/200, inputFile) != NULL) {
         //Empty command
@@ -51,10 +54,10 @@ void machineCodeConverter(const char *inputPath, const char *outputPath, int *pr
         resetCharArray(bits, 16);
 
         if (string[0] == 'A' && string[1] == 'D') {}//ADD
-        else if (string[0] == 'N') {}//NOT
-        else if (string[0] == 'B') {}//BR
-        else if (string[0] == 'L') {}//LDR/LD
-        else if (string[0] == 'S') {}//ST
+        else if (string[0] == 'N' && string[1] == 'O' && string[3] == 'T') {}//NOT
+        else if (string[0] == 'B' && string[1] == 'R') {}//BR
+        else if (string[0] == 'L' && string[1] == 'D') {}//LDR/LD
+        else if (string[0] == 'S' && string[1] == 'T') {}//ST
         else if (string[0] == '.') {
             //.ORIG x
             if (string[1] == 'O') {
@@ -87,16 +90,16 @@ void machineCodeConverter(const char *inputPath, const char *outputPath, int *pr
         }//LABEL
         else if (string[0] != ' ' && string[0] != '\n') {
             strcpy(labels[labelCounter],string);
-            labelValue[labelCounter] = (int) programCounter;
+            labelValue[labelCounter] = programCounter;
             labelCounter++;
         }
         programCounter++;
         counter++;
-        printf("%s", bits);
+        //printf("%s", bits);
         //fprintf(outputPath, bits, counter);
     }
     counter = 0;
-    programCounter = constantProgramCounter;
+    programCounter = programCounterPointer;
 
     inputFile = fopen(inputPath, "r");
     if (inputFile == NULL) {
@@ -107,6 +110,9 @@ void machineCodeConverter(const char *inputPath, const char *outputPath, int *pr
         printf("%s","value: ");
         if (labels[j] != NULL)
             printf("%s",labels[j]);
+        printf("%s","\n");
+        printf("%s","value: ");
+        printf("%i",labelValue[j]);
         printf("%s","\n");
     }
 
@@ -212,7 +218,7 @@ void machineCodeConverter(const char *inputPath, const char *outputPath, int *pr
             //.STRINGZ Kan også forklare denne hvis det er. Lidt dårlig kode, men hey. Blev lavet sent xD
             // Evt omdøbe navnet på metoden *ThinkingEmoji*
         else if (string[0] == '.' && string[1] == 'S') {
-            stringz(string, bits, programCounter);
+            stringz(string, bits, (int *) programCounter);
             for (int i = 0; i < 15; ++i) {
                 bits[i] = '0';
             }
