@@ -8,7 +8,7 @@ int main() {
     char string[] = "../resource/assembly.txt";
     char empty[20];
     while (1) {
-        printf("%s","Enter to load again\n");
+        printf("%s","Enter to load again");
         fgets(empty, MAX_LENGTH, stdin);
         //printf(machineCodeConverter(string));
          step2(string);

@@ -3,6 +3,7 @@
 //
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 void resetCharArray(char *chars, int size);
 
@@ -23,6 +24,7 @@ void stringz(char *string, char *bits, int *programCounter);
 
 
 void machineCodeConverter(const char *inputPath, const char *outputPath, int *programCounter) {
+    const int *constantProgramCounter = programCounter;
     FILE *inputFile = fopen(inputPath, "r");
     if (inputFile == NULL) {
         printf("%s", "Could not open file ", inputPath);
@@ -39,12 +41,10 @@ void machineCodeConverter(const char *inputPath, const char *outputPath, int *pr
     int counter = 0;
 
 
-
-    char labels[100];
+    char labels[100][/*MAXSIZE*/200];
     int labelValue[100];
     int labelCounter = 0;
     while (fgets(string, /*MAXSIZE*/200, inputFile) != NULL) {
-        printf("%s", string);
         //Empty command
         char *bits = "0000000000000000\n\0";
         //Set all 'bits' to 0 but not \n and \0 value at [16] and [17]
@@ -86,7 +86,7 @@ void machineCodeConverter(const char *inputPath, const char *outputPath, int *pr
 
         }//LABEL
         else if (string[0] != ' ' && string[0] != '\n') {
-            labels[labelCounter] = (char) string;
+            strcpy(labels[labelCounter],string);
             labelValue[labelCounter] = (int) programCounter;
             labelCounter++;
         }
@@ -96,7 +96,19 @@ void machineCodeConverter(const char *inputPath, const char *outputPath, int *pr
         //fprintf(outputPath, bits, counter);
     }
     counter = 0;
-    programCounter = (int *) 3000;
+    programCounter = constantProgramCounter;
+
+    inputFile = fopen(inputPath, "r");
+    if (inputFile == NULL) {
+        printf("%s", "Could not open file ", inputPath);
+        exit(1);
+    }
+    for (int j = 0; j < 100; ++j) {
+        printf("%s","value: ");
+        if (labels[j] != NULL)
+            printf("%s",labels[j]);
+        printf("%s","\n");
+    }
 
 
     while (fgets(string, /*MAXSIZE*/200, inputFile) != NULL) {
@@ -153,6 +165,7 @@ void machineCodeConverter(const char *inputPath, const char *outputPath, int *pr
                 bits[6] = '1';
                 pos++;
             }
+            //offset
         }
             //LDR
         else if (string[0] == 'L') {
