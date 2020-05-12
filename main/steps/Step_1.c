@@ -4,6 +4,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#define MAX_SIZE 200
+
+int findOffset(char labels[100][200], int labelvalue[100], int programCounter, char label[]);
 
 void resetCharArray(char *chars, int size);
 
@@ -22,7 +25,6 @@ void stringz(char *string, char *bits, int *programCounter);
 //printf("%c",string[8]);
 //printf("%s","\n");
 
-
 void machineCodeConverter(const char *inputPath, const char *outputPath, int *programCounterPointer) {
     int programCounter = (int) programCounterPointer;
     FILE *inputFile = fopen(inputPath, "r");
@@ -36,18 +38,17 @@ void machineCodeConverter(const char *inputPath, const char *outputPath, int *pr
         printf("%s", "Could not open file output");
         exit(2);
     }
-    //const int MAXSIZE = 200;
-    char string[200];
+    char string[MAX_SIZE];
     int counter = 0;
     int labelValue[100];
-    char labels[100][/*MAXSIZE*/200];
+    char labels[100][MAX_SIZE];
     for (int k = 0; k < 100; ++k) {
-        strcpy(labels[k],"Empty");
+        strcpy(labels[k], "Empty");
         labelValue[k] = -1;
     }
 
     int labelCounter = 0;
-    while (fgets(string, /*MAXSIZE*/200, inputFile) != NULL) {
+    while (fgets(string, MAX_SIZE, inputFile) != NULL) {
         //Empty command
         char *bits = "0000000000000000\n\0";
         //Set all 'bits' to 0 but not \n and \0 value at [16] and [17]
@@ -63,11 +64,11 @@ void machineCodeConverter(const char *inputPath, const char *outputPath, int *pr
                 //hexaDecimalToBinary(bits, string, 6);
             }
                 //.FILL
-            else if ( string[1] == 'F') {
+            else if (string[1] == 'F') {
                 //hexaDecimalToBinary(bits, string, 6);
             }
                 //.BLKW
-            else if ( string[1] == 'B') {
+            else if (string[1] == 'B') {
                 for (int i = 0; i < charToInt(string, 6) - 1; i++) {
                     //printf("%s",bits);
                     programCounter++;
@@ -88,7 +89,7 @@ void machineCodeConverter(const char *inputPath, const char *outputPath, int *pr
 
         }//LABEL
         else if (string[0] != ' ' && string[0] != '\n') {
-            strcpy(labels[labelCounter],string);
+            strcpy(labels[labelCounter], string);
             labelValue[labelCounter] = programCounter;
             labelCounter++;
         }
@@ -98,25 +99,25 @@ void machineCodeConverter(const char *inputPath, const char *outputPath, int *pr
         //fprintf(outputPath, bits, counter);
     }
     counter = 0;
-    programCounter = programCounterPointer;
+    programCounter = (int) programCounterPointer;
 
     inputFile = fopen(inputPath, "r");
     if (inputFile == NULL) {
         printf("%s", "Could not open file ", inputPath);
         exit(1);
     }
-    for (int j = 0; j < 20; ++j) {
-        printf("%s","value: ");
-        if (labels[j] != NULL)
-            printf("%s",labels[j]);
-        printf("%s","\n");
-        printf("%s","int value: ");
-        printf("%i",labelValue[j]);
-        printf("%s","\n");
-    }
+   // for (int j = 0; j < 20; ++j) {
+   //     printf("%s", "value: ");
+   //     if (labels[j] != NULL)
+  //          printf("%s", labels[j]);
+//        printf("%s", "\n");
+//        printf("%s", "int value: ");
+//        printf("%i", labelValue[j]);
+  //      printf("%s", "\n");
+  //  }
 
 
-    while (fgets(string, /*MAXSIZE*/200, inputFile) != NULL) {
+    while (fgets(string, MAX_SIZE, inputFile) != NULL) {
         printf("%s", string);
         //Empty command
         char *bits = "0000000000000000\n\0";
@@ -186,7 +187,16 @@ void machineCodeConverter(const char *inputPath, const char *outputPath, int *pr
             else {
                 calculateDirectoryInBits(bits, 4, string[4]);
                 bits[1] = '0';
-                //PCoffset9 here
+                size_t len = strlen(string);
+                //0,1,2,3,4
+                //len = 5
+                char *offsetString = malloc(len-6);
+                offsetString = memcpy_s(offsetString,sizeof(offsetString),string + 6,sizeof(string));
+
+                printf("%s", "value: ");
+                printf("%i", findOffset(labels, labelValue, programCounter, offsetString));
+                printf("%s", "\n");
+                findOffset(labels, labelValue, programCounter, offsetString);
             }
         }
             //ST

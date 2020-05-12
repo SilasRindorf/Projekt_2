@@ -1,5 +1,6 @@
 #include <stdbool.h>
 #include <stdio.h>
+#include <string.h>
 
 void resetCharArray(char *chars, int size) {
     for (int i = 0; i < size; i++) {
@@ -259,4 +260,24 @@ void stringz(char *string, char *bits, int *programCounter) {
         programCounter++;
         printf("%s", bits);
     }
+}
+
+int findOffset(char labels[100][200],int labelvalue[100],int programCounter,char label[]){
+    int counter = 0;
+    while (strcmp(labels[counter],label)!= 0){
+        counter++;
+        printf("%s", "value of str1: ");
+        printf("%s",label);
+        printf("%s", "\n");
+        printf("%s", "value of str2: ");
+        printf("%s",labels[counter]);
+        printf("%s", "\n");
+        printf("%s", "value of compare: ");
+        printf("%i",strcmp(labels[counter],label));
+        printf("%s", "\n");
+        if (counter == 100){
+            return 10;
+        }
+    }
+    return labelvalue[counter] - programCounter;
 }
