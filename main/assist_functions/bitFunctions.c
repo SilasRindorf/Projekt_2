@@ -219,7 +219,7 @@ void hexaDecimalToBinary(char *bits, const char *string, int startingPos) {
     }
 }
 
-void stringzErNogetLort(char *string, char *bits) {
+void stringzErNogetLort(char *string, char *bits, int *programCounter) {
     //Source https://www.geeksforgeeks.org/convert-string-binary-sequence/
     //Rewrote the Java code into C code
     int stringCounter = 10;
@@ -256,6 +256,7 @@ void stringzErNogetLort(char *string, char *bits) {
 
         bitCounter = 9;
         stringCounter++;
+        programCounter++;
         printf("%s", bits);
     }
 }

@@ -7,14 +7,14 @@ void calculateDirectoryInBits(char *bits, int startBit, char directory);
 void valueToCharArrayInBits(char *bits, int startBit, int bitsAvailable, int value);
 int charToInt(char *chars, int pos);
 void hexaDecimalToBinary(char *bits, const char *string,int startingPos);
-void stringzErNogetLort(char* string,char* bits);
+void stringzErNogetLort(char* string,char* bits, int *programCounter);
 
 //Verdens bedste debugger
 //printf("%s","value: ");
 //printf("%c",string[8]);
 //printf("%s","\n");
 
-char *machineCodeConverter(const char *string, int programCounter) {
+char *machineCodeConverter(const char *string, int *programCounter) {
     //Empty command
     char *bits = "0000000000000000\n\0";
     //Set all 'bits' to 0 but not \n and \0 value at [16] and [17]
@@ -109,13 +109,14 @@ char *machineCodeConverter(const char *string, int programCounter) {
     else if(string[0] == '.' && string[1] == 'B'){
         for (int i = 0; i<charToInt(string,6) - 1; i++){
             printf("%s",bits);
+            programCounter++;
            // printf("%s","\n");
         }
     }
         //.STRINGZ Kan også forklare denne hvis det er. Lidt dårlig kode, men hey. Blev lavet sent xD
         // Evt omdøbe navnet på metoden *ThinkingEmoji*
     else if(string[0] == '.' && string[1] == 'S'){
-        stringzErNogetLort(string,bits);
+        stringzErNogetLort(string,bits,programCounter);
         for (int i = 0; i < 16; ++i) {
              bits[i] = '0';
         }

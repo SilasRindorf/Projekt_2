@@ -4,7 +4,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-char *machineCodeConverter(const char *string,int programCounter);
+char *machineCodeConverter(const char *string,int *programCounter);
 
 void step2(char *filepath){
     int programCounter = 3000;
