@@ -1,19 +1,33 @@
 #include <stdio.h>
-void *step2(char *filepath);
+#include <string.h>
+#define MAX_LENGTH 40
+void step1(int *programCounterPointer, char * string);
+void step2 (const char *inputPath, const char *outputPath, int *programCounterPointer);
 
 //Main function
 int main() {
-    int MAX_LENGTH = 20;
     //printf("Type in Assembly command\n");
-    char string[] = "../resource/assembly.txt";
-    char empty[20];
+    char input[] = "../resource/assembly.txt";
+    char output[] = "../resource/output.txt";
+    char choice[MAX_LENGTH];
+    int * programCounter = (int *) 3000;
     while (1) {
-        printf("%s","Enter to load again");
-        fgets(empty, MAX_LENGTH, stdin);
-        //printf(machineCodeConverter(string));
-         step2(string);
+        printf("%s","'1' to run step 1\n'2' to run step 2\n'Q' to quit\n");
+        scanf("%s",choice);
+        if (strcmp(choice,"1") == 0){
+            printf("%s","Write an assembly line\n");
+            fgets(choice,MAX_LENGTH,stdin);
+            fgets(choice,MAX_LENGTH,stdin);
+            step1(programCounter,choice);
+        }
+        else if (strcmp(choice,"2") == 0){
+            step2(input,output,programCounter);
+        }
+        else {
+            printf("%s","Closing program");
+            return 0;
+        }
     }
-    return 0;
 }
 
 
