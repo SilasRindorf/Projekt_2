@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 #define MAX_SIZE 200
+#include <stdbool.h>
 
 
 int findOffset(char labels[100][200], int labelvalue[100], int programCounter, char label[]);
@@ -103,6 +104,9 @@ void step2 (const char *inputPath, const char *outputPath, int *programCounterPo
         printf("%s", string);
         //Empty command
         char *bits = "0000000000000000\n\0";
+        //Making sure not to print labels
+        bool print = false;
+
         //Set all 'bits' to 0 but not \n and \0 value at [16] and [17]
         resetCharArray(bits, 16);
         //OP code first
@@ -123,6 +127,7 @@ void step2 (const char *inputPath, const char *outputPath, int *programCounterPo
                 //bit 12,13,14,15
                 valueToCharArrayInBits(bits, 11, 5, charToInt(temp, 0));
             }
+            print = true;
         }
             //NOT
         else if (string[0] == 'N') {
@@ -136,9 +141,10 @@ void step2 (const char *inputPath, const char *outputPath, int *programCounterPo
             bits[13] = '1';
             bits[14] = '1';
             bits[15] = '1';
+            print = true;
         }
             //BR
-        else if (string[0] == 'B') {
+        else if (string[0] == 'B' && string[1] == 'R') {
             int pos = 3;
             if (string[2] == 'n') {
                 bits[4] = '1';
@@ -161,7 +167,9 @@ void step2 (const char *inputPath, const char *outputPath, int *programCounterPo
                 temp ++;
                 i++;
             }
+
             valueToCharArrayInBits(bits,7,9,findOffset(labels, labelValue, programCounter, offsetString));
+            print = true;
         }
             //LDR
         else if (string[0] == 'L') {
@@ -171,15 +179,13 @@ void step2 (const char *inputPath, const char *outputPath, int *programCounterPo
                 bits[1] = '1';
                 calculateDirectoryInBits(bits, 4, string[5]);
                 calculateDirectoryInBits(bits, 7, string[8]);
+                valueToCharArrayInBits(bits,10,6,charToInt(string,11));
             }
-                //Offset6 here
+
                 //LD
             else {
                 calculateDirectoryInBits(bits, 4, string[4]);
                 bits[1] = '0';
-                size_t len = strlen(string);
-                //0,1,2,3,4
-                //len = 5
                 char offsetString[20] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
                 int temp = 0;
                 int i = 6;
@@ -188,9 +194,9 @@ void step2 (const char *inputPath, const char *outputPath, int *programCounterPo
                     temp ++;
                     i++;
                 }
-
                 valueToCharArrayInBits(bits,7,9,findOffset(labels, labelValue, programCounter, offsetString));
             }
+            print = true;
         }
             //ST
         else if (string[0] == 'S') {
@@ -206,15 +212,18 @@ void step2 (const char *inputPath, const char *outputPath, int *programCounterPo
                 i++;
             }
             valueToCharArrayInBits(bits,7,9,findOffset(labels, labelValue, programCounter, offsetString));
+            print = true;
         }
             //.ORIG x
         else if (string[0] == '.' && string[1] == 'O') {
             hexaDecimalToBinary(bits, string, 6);
+            print = true;
         }
 
             //.FILL
         else if (string[0] == '.' && string[1] == 'F') {
             hexaDecimalToBinary(bits, string, 6);
+            print = true;
         }
             //.BLKW
         else if (string[0] == '.' && string[1] == 'B') {
@@ -223,6 +232,7 @@ void step2 (const char *inputPath, const char *outputPath, int *programCounterPo
                 programCounter++;
                 printf("%s","\n");
             }
+            print = true;
         }
             //.STRINGZ
         else if (string[0] == '.' && string[1] == 'S') {
@@ -230,7 +240,7 @@ void step2 (const char *inputPath, const char *outputPath, int *programCounterPo
             for (int i = 0; i < 16; ++i) {
                 bits[i] = '0';
             }
-
+            print = true;
         }
             // .END
         else if (string[0] == '.' && string[1] == 'E') {
@@ -238,7 +248,9 @@ void step2 (const char *inputPath, const char *outputPath, int *programCounterPo
         }
         programCounter++;
         counter++;
-        printf("%s", bits);
+        if (print){
+            printf("%s", bits);
+        }
         //fprintf(outputPath, bits, counter);
     }
     fclose(inputFile);

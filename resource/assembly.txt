@@ -1,4 +1,4 @@
-.ORIG x3000
+.ORIG x0500
 LD R7 A
 LD R7 B
 X
@@ -7,14 +7,15 @@ ADD R7 R7 #-1
 ADD R7 R7 #1
 BRnzp X
 ST R7 C
-LDR R7 R7
-LDR R7 R7
+LDR R7 R4 #1
+LDR R7 R4 #-1
+LDR R7 R4 #20
 A
 .FILL x2300
 B
 .FILl x2034
 C
 .BLKW 1
-MSG
-.STRINGZ "Hey dude"
+M
+.STRINGZ "Hello world"
 .END
