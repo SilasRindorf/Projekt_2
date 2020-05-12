@@ -23,10 +23,12 @@ int main() {
         else if (strcmp(choice,"2") == 0){
             step2(input,output,programCounter);
         }
-        else {
+        else if (strcmp(choice,"Q") == 0) {
             printf("%s","Closing program");
             return 0;
         }
+        else
+            printf("%s","Not a valid command");
     }
 }
 

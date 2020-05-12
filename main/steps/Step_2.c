@@ -97,15 +97,6 @@ void step2 (const char *inputPath, const char *outputPath, int *programCounterPo
         printf("%s", "Could not open file ", inputPath);
         exit(1);
     }
-    // for (int j = 0; j < 20; ++j) {
-    //     printf("%s", "value: ");
-    //     if (labels[j] != NULL)
-    //          printf("%s", labels[j]);
-//        printf("%s", "\n");
-//        printf("%s", "int value: ");
-//        printf("%i", labelValue[j]);
-    //      printf("%s", "\n");
-    //  }
 
 
     while (fgets(string, MAX_SIZE, inputFile) != NULL) {
@@ -215,8 +206,7 @@ void step2 (const char *inputPath, const char *outputPath, int *programCounterPo
                 // printf("%s","\n");
             }
         }
-            //.STRINGZ Kan også forklare denne hvis det er. Lidt dårlig kode, men hey. Blev lavet sent xD
-            // Evt omdøbe navnet på metoden *ThinkingEmoji*
+            //.STRINGZ
         else if (string[0] == '.' && string[1] == 'S') {
             stringz(string, bits, (int *) programCounter);
             for (int i = 0; i < 16; ++i) {
@@ -224,7 +214,6 @@ void step2 (const char *inputPath, const char *outputPath, int *programCounterPo
             }
 
         }
-            // Forstår ikke helt hvad denne skal gøre, så er ikke lavet :)
         else if (string[0] == '.' && string[1] == 'E') {
             return;
         }
