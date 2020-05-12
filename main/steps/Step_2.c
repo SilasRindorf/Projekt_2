@@ -1,6 +1,3 @@
-//
-// Created by Silas on 11-05-2020.
-//
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -15,8 +12,7 @@ void calculateDirectoryInBits(char *bits, int startBit, char directory);
 void valueToCharArrayInBits(char *bits, int startBit, int bitsAvailable, int value);
 int charToInt(char *chars, int pos);
 void hexaDecimalToBinary(char *bits, const char *string, int startingPos);
-void stringz(char *string, char *bits, int *programCounter);
-
+void stringz(char *string, char *bits, int *programCounter, FILE *outputFile);
 void step2 (const char *inputPath, const char *outputPath, int *programCounterPointer) {
     int programCounter = (int) programCounterPointer;
     FILE *inputFile = fopen(inputPath, "r");
@@ -25,7 +21,6 @@ void step2 (const char *inputPath, const char *outputPath, int *programCounterPo
         exit(1);
     }
     FILE *outputFile;
-    outputPath = "..\\resource\\output.txt";
     outputFile = fopen(outputPath, "w");
     if (outputFile == NULL) {
         printf("%s", "Could not open file output");
@@ -237,7 +232,7 @@ void step2 (const char *inputPath, const char *outputPath, int *programCounterPo
         }
             //.STRINGZ
         else if (string[0] == '.' && string[1] == 'S') {
-            stringz(string, bits, (int *) programCounter);
+            stringz(string, bits, (int *) programCounter,outputFile);
             for (int i = 0; i < 16; ++i) {
                 bits[i] = '0';
             }
@@ -249,11 +244,12 @@ void step2 (const char *inputPath, const char *outputPath, int *programCounterPo
         }
         if (print){
             printf("%s", bits);
-            fprintf(outputFile, "%s",bits);
+            fprintf(outputFile,"%s",bits);
         }
         programCounter++;
         counter++;
     }
     fclose(inputFile);
+    printf("%s", "god help me plz");
     fclose(outputFile);
 }

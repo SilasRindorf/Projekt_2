@@ -12,7 +12,7 @@ int main() {
     char choice[MAX_LENGTH];
     int * programCounter = (int *) 3000;
     while (1) {
-        printf("%s","'1' to run step 1\n'2' to run step 2\n'Q' to quit\n");
+        printf("%s","'1' to run step 1\n'2' to run step 2\n'Q' to quit and print to file\n");
         scanf("%s",choice);
         if (strcmp(choice,"1") == 0){
             printf("%s","Write an assembly line\n");
@@ -24,7 +24,7 @@ int main() {
             step2(input,output,programCounter);
         }
         else if (strcmp(choice,"Q") == 0) {
-            printf("%s","Closing program\n");
+            printf("%s","Closing program and writing to file\n");
             return 0;
         }
         else

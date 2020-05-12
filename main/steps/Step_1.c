@@ -1,30 +1,13 @@
-//
-// Created by Silas on 11-05-2020.
-//
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 #define MAX_SIZE 200
 
 int findOffset(char labels[100][200], int labelvalue[100], int programCounter, char label[]);
-
 void resetCharArray(char *chars, int size);
-
 void calculateDirectoryInBits(char *bits, int startBit, char directory);
-
 void valueToCharArrayInBits(char *bits, int startBit, int bitsAvailable, int value);
-
 int charToInt(char *chars, int pos);
-
 void hexaDecimalToBinary(char *bits, const char *string, int startingPos);
-
 void stringz(char *string, char *bits, int *programCounter);
-
-//Verdens bedste debugger
-//printf("%s","value: ");
-//printf("%c",string[8]);
-//printf("%s","\n");
 
 void step1(int *programCounterPointer, char *string) {
     int programCounter = (int) programCounterPointer;
@@ -40,12 +23,10 @@ void step1(int *programCounterPointer, char *string) {
         calculateDirectoryInBits(bits, 7, string[8]);
         if (string[10] == 'R') {
             calculateDirectoryInBits(bits, 13, string[11]);
-
         }
             //imm5
         else {
             bits[10] = '1';
-
             //Figure out how to make array in function call
             char temp[3] = {string[11], string[12], string[13]};
             //bit 12,13,14,15

@@ -1,6 +1,5 @@
 #include <stdbool.h>
 #include <stdio.h>
-#include <string.h>
 
 void resetCharArray(char *chars, int size) {
     for (int i = 0; i < size; i++) {
@@ -220,7 +219,7 @@ void hexaDecimalToBinary(char *bits, const char *string, int startingPos) {
     }
 }
 
-void stringz(char *string, char *bits, int *programCounter) {
+void stringz(char *string, char *bits, int *programCounter, FILE *outputFile) {
     //Source https://www.geeksforgeeks.org/convert-string-binary-sequence/
     //Rewrote the Java code into C code
     int stringCounter = 10;
@@ -258,6 +257,7 @@ void stringz(char *string, char *bits, int *programCounter) {
         bitCounter = 9;
         stringCounter++;
         programCounter++;
+        fprintf(outputFile,"%s",bits);
         printf("%s", bits);
     }
 }
