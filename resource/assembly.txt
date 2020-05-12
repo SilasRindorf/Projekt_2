@@ -1,4 +1,4 @@
-.ORIG x0500
+.ORIG x3000
 LD R7 A
 LD R7 B
 X

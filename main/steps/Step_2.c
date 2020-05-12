@@ -251,7 +251,7 @@ void step2 (const char *inputPath, const char *outputPath, int *programCounterPo
         if (print){
             printf("%s", bits);
         }
-        //fprintf(outputPath, bits, counter);
+        fprintf(outputPath, bits, counter);
     }
     fclose(inputFile);
     fclose(outputFile);
