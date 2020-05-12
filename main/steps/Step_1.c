@@ -13,8 +13,37 @@ void stringz(char* string, char* bits, int *programCounter);
 //printf("%s","value: ");
 //printf("%c",string[8]);
 //printf("%s","\n");
-char** labels(const char *string, int *programCounter){
+void reserveMemory (const char *string, int *programCounter, char *labels,int *ints){
+    //.ORIG x
+    if(string[0] == '.' && string[1] == 'O'){
+        //Progam counter her
+    }
+        //.FILL
+    else if(string[0] == '.' && string[1] == 'F'){
 
+    }
+
+        //.BLKW
+    else if(string[0] == '.' && string[1] == 'B'){
+
+    }
+        //.STRINGZ
+    else if(string[0] == '.' && string[1] == 'S'){
+
+    }
+        // Forstår ikke helt hvad denne skal gøre, så er ikke lavet :)
+    else if(string[0] == '.' && string[1] == 'E'){
+
+    }
+    else if(string[0] != '\n'){
+        int counter = 0;
+        while (labels[counter] != NULL){
+            counter++;
+        }
+        labels[counter] = string;
+        ints[counter] = programCounter;
+        //labels[programCounter] =
+    }
 }
 
 char *machineCodeConverter(const char *string, int *programCounter, char **labels) {
@@ -96,7 +125,7 @@ char *machineCodeConverter(const char *string, int *programCounter, char **label
         //PCoffset9 here
         //Step 3. Need label for it
     }
-        //.ORIG
+        //.ORIG x
     else if(string[0] == '.' && string[1] == 'O'){
         hexaDecimalToBinary(bits,string,6);
     }
@@ -105,10 +134,7 @@ char *machineCodeConverter(const char *string, int *programCounter, char **label
     else if(string[0] == '.' && string[1] == 'F'){
         hexaDecimalToBinary(bits,string,6);
     }
-        //.BLKW Den resevere hukommelse plads, men siden der kun er 9 bit signed til hukommelsen, så kan tallet ikke,
-        //være større end den mængde plads der er tilbage teknisk set. (Vi skal ikke køre det så det er finno.
-        // I kan slette denne kommentar når I har læst den. Mere til forståelse for jer.)
-        //Ændre venligst ikke I den. Kan forklare hvorfor den ser sådan her ud når jeg kommer på :)
+        //.BLKW
     else if(string[0] == '.' && string[1] == 'B'){
         for (int i = 0; i<charToInt(string,6) - 1; i++){
             //printf("%s",bits);
