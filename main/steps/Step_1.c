@@ -24,7 +24,7 @@ void stringz(char *string, char *bits, int *programCounter);
 
 
 void machineCodeConverter(const char *inputPath, const char *outputPath, int *programCounterPointer) {
-    int programCounter;
+    int programCounter = (int) programCounterPointer;
     FILE *inputFile = fopen(inputPath, "r");
     if (inputFile == NULL) {
         printf("%s", "Could not open file ", inputPath);
@@ -54,7 +54,7 @@ void machineCodeConverter(const char *inputPath, const char *outputPath, int *pr
         resetCharArray(bits, 16);
 
         if (string[0] == 'A' && string[1] == 'D') {}//ADD
-        else if (string[0] == 'N' && string[1] == 'O' && string[3] == 'T') {}//NOT
+        else if (string[0] == 'N' && string[1] == 'O' && string[2] == 'T') {}//NOT
         else if (string[0] == 'B' && string[1] == 'R') {}//BR
         else if (string[0] == 'L' && string[1] == 'D') {}//LDR/LD
         else if (string[0] == 'S' && string[1] == 'T') {}//ST
@@ -65,7 +65,7 @@ void machineCodeConverter(const char *inputPath, const char *outputPath, int *pr
             }
                 //.FILL
             else if ( string[1] == 'F') {
-                hexaDecimalToBinary(bits, string, 6);
+                //hexaDecimalToBinary(bits, string, 6);
             }
                 //.BLKW
             else if ( string[1] == 'B') {
@@ -77,7 +77,7 @@ void machineCodeConverter(const char *inputPath, const char *outputPath, int *pr
             }
                 //.STRINGZ
             else if (string[1] == 'S') {
-                stringz(string, bits, programCounter);
+                //stringz(string, bits, programCounter);
                 for (int i = 0; i < 15; ++i) {
                     bits[i] = '0';
                 }
@@ -111,7 +111,7 @@ void machineCodeConverter(const char *inputPath, const char *outputPath, int *pr
         if (labels[j] != NULL)
             printf("%s",labels[j]);
         printf("%s","\n");
-        printf("%s","value: ");
+        printf("%s","int value: ");
         printf("%i",labelValue[j]);
         printf("%s","\n");
     }
