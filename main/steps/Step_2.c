@@ -153,7 +153,15 @@ void step2 (const char *inputPath, const char *outputPath, int *programCounterPo
                 bits[6] = '1';
                 pos++;
             }
-            //offset
+            char offsetString[20] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+            int temp = 0;
+            int i = 6;
+            while (string[i] != '\n'){
+                offsetString[temp] = string[i];
+                temp ++;
+                i++;
+            }
+            valueToCharArrayInBits(bits,7,9,findOffset(labels, labelValue, programCounter, offsetString));
         }
             //LDR
         else if (string[0] == 'L') {
@@ -172,13 +180,16 @@ void step2 (const char *inputPath, const char *outputPath, int *programCounterPo
                 size_t len = strlen(string);
                 //0,1,2,3,4
                 //len = 5
-                char *offsetString = malloc(len-6);
-                offsetString = memcpy_s(offsetString,sizeof(offsetString),string + 6,sizeof(string));
+                char offsetString[20] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+                int temp = 0;
+                int i = 6;
+                while (string[i] != '\n'){
+                    offsetString[temp] = string[i];
+                    temp ++;
+                    i++;
+                }
 
-                printf("%s", "value: ");
-                printf("%i", findOffset(labels, labelValue, programCounter, offsetString));
-                printf("%s", "\n");
-                findOffset(labels, labelValue, programCounter, offsetString);
+                valueToCharArrayInBits(bits,7,9,findOffset(labels, labelValue, programCounter, offsetString));
             }
         }
             //ST
@@ -186,12 +197,19 @@ void step2 (const char *inputPath, const char *outputPath, int *programCounterPo
             bits[2] = '1';
             bits[3] = '1';
             calculateDirectoryInBits(bits, 4, string[4]);
-            //PCoffset9 here
-            //Step 3. Need label for it
+            char offsetString[20] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+            int temp = 0;
+            int i = 6;
+            while (string[i] != '\n'){
+                offsetString[temp] = string[i];
+                temp ++;
+                i++;
+            }
+            valueToCharArrayInBits(bits,7,9,findOffset(labels, labelValue, programCounter, offsetString));
         }
             //.ORIG x
         else if (string[0] == '.' && string[1] == 'O') {
-            //hexaDecimalToBinary(bits, string, 6);
+            hexaDecimalToBinary(bits, string, 6);
         }
 
             //.FILL
@@ -201,9 +219,9 @@ void step2 (const char *inputPath, const char *outputPath, int *programCounterPo
             //.BLKW
         else if (string[0] == '.' && string[1] == 'B') {
             for (int i = 0; i < charToInt(string, 6) - 1; i++) {
-                //printf("%s",bits);
+                printf("%s",bits);
                 programCounter++;
-                // printf("%s","\n");
+                printf("%s","\n");
             }
         }
             //.STRINGZ
@@ -214,6 +232,7 @@ void step2 (const char *inputPath, const char *outputPath, int *programCounterPo
             }
 
         }
+            // .END
         else if (string[0] == '.' && string[1] == 'E') {
             return;
         }
